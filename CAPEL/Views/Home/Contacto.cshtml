@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Contacto";
+}
+
+<section id="contacto">
+    <h2>Contacto</h2>
+
+    <div class="contact-method">
+        <label for="metodo">¿Cómo deseas contactarnos?</label>
+        <select id="metodo" onchange="cambiarMetodoContacto()">
+            <option value="">Elige una forma</option>
+            <option value="formulario">Formulario</option>
+            <option value="whatsapp">WhatsApp</option>
+        </select>
+    </div>
+
+    <!-- Formulario -->
+    <div id="formulario-contacto">
+        <form onsubmit="enviarFormulario(event)">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" placeholder="Ej. Ana López" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" placeholder="Ej. +52 55 1234 5678">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" placeholder="Ej. ejemplo@correo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="respuesta-formulario"></p>
+    </div>
+
+    <!-- WhatsApp -->
+    <div id="whatsapp-contacto" style="display: none;">
+        <p>Puedes comunicarte con nosotros directamente por WhatsApp:</p>
+        <a href="https://wa.me/528211046161" target="_blank" class="btn-whatsapp">Chatear por WhatsApp</a>
+    </div>
+</section>
+

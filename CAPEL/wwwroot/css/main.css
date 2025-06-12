@@ -1,0 +1,96 @@
+/* main.css */
+
+/* Importación de variables */
+@import "color.css";
+
+/* Tipografía y base */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p, li {
+    font-size: 1rem;
+}
+
+/* Layout de secciones */
+section {
+    padding: var(--espacio-seccion);
+    margin: var(--espacio-global) auto;
+    max-width: var(--max-width-seccion);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: background-color 0.3s ease-in-out;
+}
+
+section:hover {
+    background-color: #f9f9f9;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: var(--color-enlace);
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: var(--color-secundario);
+}
+
+/* Responsivo */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    p, label, input, textarea, button {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+
+    section {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+}
