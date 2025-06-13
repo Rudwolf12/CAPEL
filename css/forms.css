@@ -1,0 +1,107 @@
+@import url(color.css);
+
+/* Estilos generales de formulario */
+form {
+    display: flex;
+    flex-direction: column;  /* Cambiar a columna para mejorar la alineación */
+    gap: 20px;
+}
+
+/* Estilo para las etiquetas del formulario */
+form label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Estilo para inputs, textarea y select */
+form input,
+form textarea,
+form select {
+    padding: 12px;
+    border: 1px solid var(--color-borde-input);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.2s ease;
+    width: 100%;
+}
+
+/* Cambiar borde al enfocarse */
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--color-borde-focus);
+    outline: none;
+}
+
+/* Estilo para el botón */
+button {
+    background-color: var(--color-boton);
+    color: white;
+    font-size: 1rem;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+/* Efecto hover para el botón */
+button:hover {
+    background-color: var(--color-boton-hover);
+}
+
+/* Mensaje de respuesta del formulario */
+#respuesta-formulario {
+    margin-top: 15px;
+    color: var(--color-exito);
+    font-weight: 500;
+}
+
+/* Método de contacto (selección) */
+.contact-method {
+    margin-bottom: 20px;
+}
+
+/* Estilo para el WhatsApp */
+#whatsapp-contacto {
+    margin-top: 20px;
+    text-align: center;
+    background: var(--color-fondo-whatsapp);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+/* Estilo para el botón de WhatsApp */
+.btn-whatsapp {
+    display: inline-block;
+    background-color: var(--color-whatsapp);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+/* Efecto hover para el botón de WhatsApp */
+.btn-whatsapp:hover {
+    background-color: var(--color-whatsapp-hover);
+}
+
+/* Ajustes responsivos */
+@media screen and (max-width: 600px) {
+    button {
+        padding: 16px;
+        font-size: 1rem;
+    }
+
+    /* Ajustar el tamaño de las etiquetas en pantallas pequeñas */
+    .form-group label {
+        font-size: 0.95rem;
+    }
+}

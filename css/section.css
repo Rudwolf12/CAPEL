@@ -1,0 +1,78 @@
+/* section.css */
+
+@import url(color.css);
+
+/* Estilos de la sección */
+section {
+    padding: 50px 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+    background: var(--color-fondo-section);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--color-sombra-section);
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: scale(1.01);
+    background: var(--color-hover-section);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+section h2 {
+    font-size: 1.4rem;
+    color: var(--color-titulo-section);
+    font-weight: 700;
+}
+
+section p {
+    color: #444;
+    line-height: 1.7;
+}
+
+section ul {
+    padding-left: 1.2em;
+}
+
+section p,
+section ul {
+    padding: 0 15px;
+}
+
+section li {
+    margin-bottom: 10px;
+}
+
+/* Responsividad */
+@media screen and (max-width: 600px) {
+    section {
+        padding: 30px 15px;
+        margin: 10px;
+    }
+
+    section h2 {
+        font-size: 1.3rem;
+    }
+
+    section p,
+    section li {
+        font-size: 0.95rem;
+    }
+
+    /* Establecer márgenes más pequeños en pantallas aún más pequeñas */
+    @media screen and (max-width: 400px) {
+        section {
+            padding: 20px 10px;
+            margin: 5px;
+        }
+
+        section h2 {
+            font-size: 1.2rem;
+        }
+
+        section p,
+        section li {
+            font-size: 0.9rem;
+        }
+    }
+}

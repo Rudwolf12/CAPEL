@@ -1,0 +1,124 @@
+/* header.css */
+
+@import url(color.css);
+
+/* Header principal */
+header {
+    text-align: center;
+    background: var(--color-fondo-header);
+    color: var(--color-texto-header);
+    padding: 20px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);  /* Sombra más suave */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Contenedor del header */
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Logo */
+.logo h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Navegación */
+nav {
+    margin-top: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links a {
+    display: block;
+    color: var(--color-texto-header);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    background: var(--color-hover-header);
+    transform: scale(1.05);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 10px;
+        background: var(--color-hover-nav);
+        border-radius: 5px;
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--color-texto-header);
+        padding: 10px;
+        border: none;
+        background: transparent;
+        transition: transform 0.2s ease;
+        left: 50%;
+        right: 50%;
+    }
+
+    .menu-toggle:hover {
+        transform: rotate(90deg);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle, .nav-links {
+        text-align: center;
+    }
+}

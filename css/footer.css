@@ -1,0 +1,28 @@
+footer {
+    background: #f1f1f1;
+    text-align: center;
+    padding: 25px 15px;
+    font-size: 0.9rem;
+    color: #555; /* Color más suave */
+    margin-top: 40px;
+    line-height: 1.5;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+    border-top: 2px solid #e0e0e0;  /* Agregar una pequeña línea superior */
+}
+
+/* Enlaces */
+footer a {
+    color: #2193b0;  /* Agregar color a los enlaces */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Para pantallas pequeñas */
+@media screen and (max-width: 600px) {
+    footer {
+        font-size: 0.85rem;
+    }
+}
