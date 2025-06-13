@@ -1,34 +1,41 @@
-name: Build and Deploy ASP.NET Static Site to GitHub Pages
+name: Build and Deploy Razor Pages to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # o tu rama principal
+      - main  # o la rama que uses
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '9.0.x'  # Usa la versión necesaria para tu proyecto
+        dotnet-version: '9.0.x'  # o la versión que uses
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build
+    - name: Build project
       run: dotnet build --configuration Release
 
-    - name: Publish
+    - name: Publish project
       run: dotnet publish -c Release -o release
 
-    - name: Copy wwwroot to publish directory (for Blazor WASM or static content)
+    - name: Prepare static files for GitHub Pages
       run: |
         mkdir public
         cp -r release/wwwroot/* public/
- 
+        # opcionalmente, incluir index.html si existe
+        if [ -f release/index.html ]; then cp release/index.html public/; fi
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
