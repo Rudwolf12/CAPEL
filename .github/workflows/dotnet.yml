@@ -25,10 +25,10 @@ jobs:
         run: dotnet restore
 
       - name: Build the project
-        run: dotnet build ./MyAspNetApp/MyAspNetApp.csproj --configuration Release --no-restore
+        run: dotnet build ./CAPEL/CAPEL.csproj --configuration Release --no-restore
 
       - name: Publish web project to output
-        run: dotnet publish ./MyAspNetApp/MyAspNetApp.csproj -c Release -o output
+        run: dotnet publish ./CAPEL/CAPEL.csproj -c Release -o output
 
       - name: Copy static content from wwwroot
         run: |
