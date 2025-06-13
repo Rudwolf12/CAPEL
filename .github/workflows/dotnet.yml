@@ -20,14 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+					env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - run: dotnet build --configuration Release CAPEL
     - name: Create the package
       run: dotnet pack --configuration Release CAPEL
     - name: Publish the package to GPR
-        run: dotnet nuget push CAPEL/bin/Release/*.nupkg
+      run: dotnet nuget push CAPEL/bin/Release/*.nupkg
