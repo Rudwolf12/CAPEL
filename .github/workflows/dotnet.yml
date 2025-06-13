@@ -3,10 +3,10 @@ name: Build and Deploy ASP.NET Core Static Site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Cambia si tu rama principal es 'master'
+      - main
 
 permissions:
-  contents: write  # Necesario para push a gh-pages
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -19,16 +19,16 @@ jobs:
       - name: Setup .NET 9.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'  # Usa la última preview
+          dotnet-version: '9.0.x'
 
       - name: Restore dependencies
         run: dotnet restore
 
       - name: Build the project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./MyAspNetApp/MyAspNetApp.csproj --configuration Release --no-restore
 
-      - name: Publish to output folder
-        run: dotnet publish -c Release -o output
+      - name: Publish web project to output
+        run: dotnet publish ./MyAspNetApp/MyAspNetApp.csproj -c Release -o output
 
       - name: Copy static content from wwwroot
         run: |
@@ -49,4 +49,4 @@ jobs:
           publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: '41898282+github-actions[bot]@users.noreply.github.com'
-          force_orphan: true  # Reemplaza el contenido del branch gh-pages
+          force_orphan: true
