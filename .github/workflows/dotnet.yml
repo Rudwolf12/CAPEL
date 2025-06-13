@@ -25,5 +25,3 @@ jobs:
     - run: dotnet build --configuration Release CAPEL
     - name: Create the package
       run: dotnet pack --configuration Release CAPEL
-    - name: Publish the package to GPR
-      run: dotnet nuget push CAPEL/bin/Release/net9.0/*.nupkg
