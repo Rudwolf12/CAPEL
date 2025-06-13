@@ -1,41 +1,46 @@
-name: Build and Deploy Razor Pages to GitHub Pages
+name: Build and Deploy ASP.NET Core to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # o la rama que uses
+      - main  # Ajusta si usas 'master' u otra rama principal
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '9.0.x'  # o la versión que uses
+      - name: Setup .NET 9.0
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build project
-      run: dotnet build --configuration Release
+      - name: Build the project
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Publish project
-      run: dotnet publish -c Release -o release
+      - name: Publish the site
+        run: dotnet publish -c Release -o output
 
-    - name: Prepare static files for GitHub Pages
-      run: |
-        mkdir public
-        cp -r release/wwwroot/* public/
-        # opcionalmente, incluir index.html si existe
-        if [ -f release/index.html ]; then cp release/index.html public/; fi
+      - name: Copy wwwroot to public folder
+        run: |
+          mkdir public
+          cp -r output/wwwroot/* public/
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+      - name: Create custom 404.html if not exists
+        run: |
+          if [ ! -f public/404.html ]; then
+            echo "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Página no encontrada</title></head><body><h1>Error 404</h1><p>La página solicitada no existe.</p></body></html>" > public/404.html
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
