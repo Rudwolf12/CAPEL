@@ -1,22 +1,25 @@
-name: Build and Deploy ASP.NET Core to GitHub Pages
+name: Build and Deploy ASP.NET Core Static Site to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Ajusta si usas 'master' u otra rama principal
+      - main  # Cambia si tu rama principal es 'master'
+
+permissions:
+  contents: write  # Necesario para push a gh-pages
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup .NET 9.0
+      - name: Setup .NET 9.0 SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '9.0.x'  # Usa la última preview
 
       - name: Restore dependencies
         run: dotnet restore
@@ -24,18 +27,18 @@ jobs:
       - name: Build the project
         run: dotnet build --configuration Release --no-restore
 
-      - name: Publish the site
+      - name: Publish to output folder
         run: dotnet publish -c Release -o output
 
-      - name: Copy wwwroot to public folder
+      - name: Copy static content from wwwroot
         run: |
           mkdir public
           cp -r output/wwwroot/* public/
 
-      - name: Create custom 404.html if not exists
+      - name: Create 404.html if it doesn't exist
         run: |
           if [ ! -f public/404.html ]; then
-            echo "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Página no encontrada</title></head><body><h1>Error 404</h1><p>La página solicitada no existe.</p></body></html>" > public/404.html
+            echo '<!DOCTYPE html><html><head><meta charset="utf-8"><title>404 - Página no encontrada</title></head><body><h1>Error 404</h1><p>La página que buscas no existe.</p></body></html>' > public/404.html
           fi
 
       - name: Deploy to GitHub Pages
@@ -44,3 +47,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: '41898282+github-actions[bot]@users.noreply.github.com'
+          force_orphan: true  # Reemplaza el contenido del branch gh-pages
